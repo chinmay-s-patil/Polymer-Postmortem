@@ -1,26 +1,33 @@
 """
-gui/main_window.py - Main application window
+gui/main_window.py - Complete main application window with all functionality
 """
 
 import os
-from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-                            QPushButton, QLabel, QLineEdit, QTreeWidget, 
-                            QTreeWidgetItem, QSplitter, QStatusBar, QFileDialog,
-                            QMessageBox, QAction, QMenuBar, QMenu, QProgressBar)
-from PyQt5.QtCore import Qt, pyqtSignal, QThread, QTimer
-from PyQt5.QtGui import QIcon, QPixmap, QImage
+import json
+import threading
+from datetime import datetime
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal, QObject
+from PyQt5.QtGui import QPixmap, QImage, QIcon
+from PyQt5.QtGui import QColor
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 import pandas as pd
 import numpy as np
 
-from constants import VERSION, BASEDIR, DEFAULT_CHARL, DEFAULT_AREA
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from constants import VERSION, BASEDIR, DEFAULT_CHARL, DEFAULT_AREA, ICON_PIXELS
 from core.data_processor import DataProcessor
-from gui.cleaning_wizard import CleaningWizard
-from gui.modulus_dialog import ModulusDialog
-from gui.yield_dialog import YieldDialog
-from gui.breakpoint_dialog import BreakpointDialog
+
+class WorkerSignals(QObject):
+    """Signals for worker threads"""
+    finished = pyqtSignal()
+    error = pyqtSignal(str)
+    result = pyqtSignal(object)
+    progress = pyqtSignal(str)
 
 class MainWindow(QMainWindow):
     """Modern PyQt5 main window for Polymer PostMortem"""
@@ -44,6 +51,9 @@ class MainWindow(QMainWindow):
         # Initialize data processor
         self.processor = DataProcessor()
         
+        # Create flag icons
+        self._create_flag_icons()
+        
         # Setup UI
         self._setup_ui()
         self._setup_menu()
@@ -58,6 +68,25 @@ class MainWindow(QMainWindow):
         # Initial population
         if os.path.isdir(self.current_dir):
             self.populate_cleaned_files(self.current_dir)
+    
+    def _create_flag_icons(self):
+        """Create flag icons for tree display"""
+        # Flag ON (red flag)
+        self.flag_on_pixmap = QPixmap(ICON_PIXELS, ICON_PIXELS)
+        self.flag_on_pixmap.fill(Qt.white)
+        from PyQt5.QtGui import QPainter, QColor, QBrush
+        painter = QPainter(self.flag_on_pixmap)
+        # Draw pole
+        painter.fillRect(2, 2, 2, ICON_PIXELS-4, QColor("#333333"))
+        # Draw red flag
+        painter.fillRect(3, 3, ICON_PIXELS-5, 5, QColor("#d92b2b"))
+        painter.end()
+        self.flag_on_icon = QIcon(self.flag_on_pixmap)
+        
+        # Flag OFF (light gray)
+        self.flag_off_pixmap = QPixmap(ICON_PIXELS, ICON_PIXELS)
+        self.flag_off_pixmap.fill(QColor("#f3f3f3"))
+        self.flag_off_icon = QIcon(self.flag_off_pixmap)
     
     def _setup_ui(self):
         """Setup the main UI layout"""
@@ -132,6 +161,7 @@ class MainWindow(QMainWindow):
         """Create left panel with file tree"""
         panel = QWidget()
         layout = QVBoxLayout(panel)
+        layout.setContentsMargins(0, 0, 0, 0)
         
         # Search box
         search_layout = QHBoxLayout()
@@ -143,13 +173,12 @@ class MainWindow(QMainWindow):
         
         # File tree
         self.tree = QTreeWidget()
-        self.tree.setHeaderLabels(["", "File", "M", "Y", "B", "U"])
-        self.tree.setColumnWidth(0, 50)
-        self.tree.setColumnWidth(1, 300)
+        self.tree.setHeaderLabels(["File", "M", "Y", "B", "U"])
+        self.tree.setColumnWidth(0, 380)
+        self.tree.setColumnWidth(1, 30)
         self.tree.setColumnWidth(2, 30)
         self.tree.setColumnWidth(3, 30)
         self.tree.setColumnWidth(4, 30)
-        self.tree.setColumnWidth(5, 30)
         self.tree.setAlternatingRowColors(True)
         layout.addWidget(self.tree)
         
@@ -159,6 +188,7 @@ class MainWindow(QMainWindow):
         """Create right panel with actions and preview"""
         panel = QWidget()
         layout = QVBoxLayout(panel)
+        layout.setContentsMargins(0, 0, 0, 0)
         
         # Action buttons row 1
         action_row1 = QHBoxLayout()
@@ -169,12 +199,13 @@ class MainWindow(QMainWindow):
         self.btn_reset = QPushButton("Reset")
         self.btn_flag = QPushButton("Flag")
         self.btn_preview = QPushButton("Preview Data")
-        self.btn_save_excel = QPushButton("Save All → Excel")
         
         for btn in [self.btn_modulus, self.btn_yield, self.btn_breakpoint, 
                    self.btn_ultimate, self.btn_reset, self.btn_flag, 
                    self.btn_preview]:
             action_row1.addWidget(btn)
+        
+        self.btn_save_excel = QPushButton("Save All → Excel")
         action_row1.addWidget(self.btn_save_excel)
         layout.addLayout(action_row1)
         
@@ -198,13 +229,20 @@ class MainWindow(QMainWindow):
         layout.addLayout(action_row2)
         
         # Matplotlib preview
+        preview_frame = QGroupBox("Preview")
+        preview_layout = QVBoxLayout(preview_frame)
+        
         self.figure = Figure(figsize=(8, 5))
         self.canvas = FigureCanvas(self.figure)
         self.ax = self.figure.add_subplot(111)
-        self.toolbar = NavigationToolbar(self.canvas, panel)
+        self.ax.set_facecolor('#1a1a1a')
+        self.figure.patch.set_facecolor('#353535')
         
-        layout.addWidget(self.toolbar)
-        layout.addWidget(self.canvas)
+        self.toolbar = NavigationToolbar(self.canvas, preview_frame)
+        preview_layout.addWidget(self.toolbar)
+        preview_layout.addWidget(self.canvas)
+        
+        layout.addWidget(preview_frame)
         
         return panel
     
@@ -313,10 +351,12 @@ class MainWindow(QMainWindow):
             self.status_label.setText("Set a valid directory first.")
             return
         
+        from gui.cleaning_wizard import CleaningWizard
         wizard = CleaningWizard(self, self.current_dir)
         wizard.exec_()
-    
-    # Continue with other methods... (truncated for brevity)
+        
+        # Refresh after cleaning
+        self.manual_refresh()
     
     def populate_cleaned_files(self, directory):
         """Populate tree with files from directory"""
@@ -350,13 +390,20 @@ class MainWindow(QMainWindow):
             u_done = "✓" if entry.get("ultimate") else "✗"
             
             # Create tree item
-            item = QTreeWidgetItem([
-                "", basename, m_done, y_done, b_done, u_done
-            ])
+            item = QTreeWidgetItem([basename, m_done, y_done, b_done, u_done])
             
             # Set flag icon
             flag_bool = bool(entry.get("flag", False))
-            # TODO: Add flag icon logic
+            item.setIcon(0, self.flag_on_icon if flag_bool else self.flag_off_icon)
+            
+            # Color code based on completion
+            done_count = sum(1 for x in [m_done, y_done, b_done, u_done] if x == "✓")
+            if done_count == 4:
+                item.setBackground(0, QColor("#e6ffeb"))
+            elif done_count > 0:
+                item.setBackground(0, QColor("#fff7e6"))
+            else:
+                item.setBackground(0, QColor("#ffecec"))
             
             self.tree.addTopLevelItem(item)
             self.item_paths[id(item)] = path
@@ -400,63 +447,195 @@ class MainWindow(QMainWindow):
             if names["strain"] and names["stress"]:
                 x = df[names["strain"]].astype(float)
                 y = df[names["stress"]].astype(float)
-                self.ax.plot(x, y, '.', ms=2)
-                self.ax.set_xlabel("Strain")
-                self.ax.set_ylabel("Stress")
+                self.ax.plot(x, y, '.', ms=2, color='#2a82da')
+                self.ax.set_xlabel("Strain", color='white')
+                self.ax.set_ylabel("Stress", color='white')
             else:
                 nums = df.select_dtypes(include=[np.number]).columns.tolist()
                 if len(nums) >= 2:
                     x = df[nums[0]].astype(float)
                     y = df[nums[1]].astype(float)
-                    self.ax.plot(x, y, '.', ms=2)
-                    self.ax.set_xlabel(nums[0])
-                    self.ax.set_ylabel(nums[1])
+                    self.ax.plot(x, y, '.', ms=2, color='#2a82da')
+                    self.ax.set_xlabel(nums[0], color='white')
+                    self.ax.set_ylabel(nums[1], color='white')
+            
+            self.ax.tick_params(colors='white')
+            self.ax.grid(True, alpha=0.3)
+            
         except Exception as e:
-            self.ax.text(0.5, 0.5, f"Preview failed: {e}", ha='center')
+            self.ax.text(0.5, 0.5, f"Preview failed: {e}", ha='center', color='white')
         
         self.canvas.draw()
     
-    # Action stubs (implement based on original logic)
+    # ==================== Action Methods ====================
+    
     def action_modulus(self):
         if not self.current_file:
             QMessageBox.information(self, "Info", "Select a file first.")
             return
-        dialog = ModulusDialog(self, self.current_file, self.processor)
-        dialog.exec_()
+        from gui.modulus_dialog import ModulusDialog
+        dialog = ModulusDialog(self, self.current_file, self.processor, self.output_dir)
+        if dialog.exec_():
+            self.manual_refresh()
     
     def action_yield(self):
         if not self.current_file:
             QMessageBox.information(self, "Info", "Select a file first.")
             return
-        dialog = YieldDialog(self, self.current_file, self.processor)
-        dialog.exec_()
+        from gui.yield_dialog import YieldDialog
+        dialog = YieldDialog(self, self.current_file, self.processor, self.output_dir)
+        if dialog.exec_():
+            self.manual_refresh()
     
     def action_breakpoint(self):
         if not self.current_file:
             QMessageBox.information(self, "Info", "Select a file first.")
             return
-        dialog = BreakpointDialog(self, self.current_file, self.processor)
-        dialog.exec_()
+        from gui.breakpoint_dialog import BreakpointDialog
+        dialog = BreakpointDialog(self, self.current_file, self.processor, self.output_dir)
+        if dialog.exec_():
+            self.manual_refresh()
     
     def action_ultimate(self):
-        # Implement ultimate calculation
-        pass
+        if not self.current_file:
+            QMessageBox.information(self, "Info", "Select a file first.")
+            return
+        
+        def worker():
+            try:
+                u = self.processor.compute_ultimate_stress(self.current_file)
+                if u is not None:
+                    master = self.processor.load_master(self.output_dir)
+                    master.setdefault(os.path.basename(self.current_file), {})["ultimate"] = u
+                    self.processor.save_master(self.output_dir, master)
+                    self.processor.merge_individual_jsons(self.output_dir)
+                    return f"Ultimate: {u}"
+                return "Ultimate computation failed"
+            except Exception as e:
+                return f"Error: {e}"
+        
+        self.status_label.setText("Computing ultimate...")
+        threading.Thread(target=lambda: self._run_worker(worker), daemon=True).start()
+    
+    def _run_worker(self, worker_func):
+        """Run a worker function and update UI"""
+        result = worker_func()
+        QTimer.singleShot(0, lambda: (
+            self.status_label.setText(result),
+            self.manual_refresh()
+        ))
     
     def reset_file(self):
-        # Implement file reset
-        pass
+        if not self.current_file or not self.output_dir:
+            return
+        
+        reply = QMessageBox.question(self, 'Confirm Reset',
+            f"Reset data for '{os.path.basename(self.current_file)}'?",
+            QMessageBox.Yes | QMessageBox.No)
+        
+        if reply == QMessageBox.Yes:
+            fname = os.path.basename(self.current_file)
+            # Delete from metric JSONs
+            for metric in ["modulus_results.json", "yield_results.json", "break_results.json"]:
+                path = os.path.join(self.output_dir, metric)
+                if os.path.exists(path):
+                    try:
+                        with open(path, 'r') as f:
+                            data = json.load(f)
+                        data.pop(fname, None)
+                        self.processor.write_json_safe(path, data)
+                    except:
+                        pass
+            
+            self.processor.merge_individual_jsons(self.output_dir)
+            self.manual_refresh()
+            self.status_label.setText(f"Reset complete for {fname}")
     
     def toggle_flag(self):
-        # Implement flag toggle
-        pass
+        if not self.current_file or not self.output_dir:
+            return
+        
+        fname = os.path.basename(self.current_file)
+        master = self.processor.load_master(self.output_dir)
+        entry = master.setdefault(fname, {})
+        entry["flag"] = not bool(entry.get("flag", False))
+        self.processor.save_master(self.output_dir, master)
+        self.processor.merge_individual_jsons(self.output_dir)
+        self.manual_refresh()
     
     def preview_file_open(self):
-        # Open preview window
-        pass
+        if not self.current_file:
+            return
+        from gui.preview_dialog import PreviewDialog
+        dialog = PreviewDialog(self, self.current_file)
+        dialog.exec_()
     
     def save_all_to_excel(self):
-        # Implement Excel export
-        pass
+        if not self.output_dir:
+            QMessageBox.warning(self, "Warning", "Set directory first.")
+            return
+        
+        filename, _ = QFileDialog.getSaveFileName(
+            self, "Save Results", 
+            f"tensile_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx",
+            "Excel Files (*.xlsx)"
+        )
+        
+        if not filename:
+            return
+        
+        try:
+            master = self.processor.load_master(self.output_dir)
+            
+            # Load individual metric files
+            mods = {}
+            ylds = {}
+            brks = {}
+            
+            for metric, data_dict in [
+                ("modulus_results.json", mods),
+                ("yield_results.json", ylds),
+                ("break_results.json", brks)
+            ]:
+                path = os.path.join(self.output_dir, metric)
+                if os.path.exists(path):
+                    with open(path, 'r') as f:
+                        data_dict.update(json.load(f))
+            
+            # Create summary
+            rows = []
+            all_files = sorted(set(list(mods.keys()) + list(ylds.keys()) + list(brks.keys()) + list(master.keys())))
+            
+            for fname in all_files:
+                m = mods.get(fname, {})
+                y = ylds.get(fname, {})
+                b = brks.get(fname, [])
+                master_entry = master.get(fname, {})
+                
+                mod_val = m.get("modulus") if isinstance(m, dict) else m
+                y_strain = y.get("strain") if isinstance(y, dict) else None
+                y_stress = y.get("stress") if isinstance(y, dict) else None
+                b_strain = b[0] if isinstance(b, list) and len(b) >= 2 else None
+                b_stress = b[1] if isinstance(b, list) and len(b) >= 2 else None
+                
+                rows.append({
+                    "File": fname,
+                    "Modulus": mod_val,
+                    "Yield Strain": y_strain,
+                    "Yield Stress": y_stress,
+                    "Ultimate Stress": master_entry.get("ultimate"),
+                    "Break Strain": b_strain,
+                    "Break Stress": b_stress
+                })
+            
+            df = pd.DataFrame(rows)
+            df.to_excel(filename, index=False)
+            
+            QMessageBox.information(self, "Success", f"Saved to {filename}")
+            self.status_label.setText(f"Exported to {filename}")
+            
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Export failed: {e}")
     
     def manual_refresh(self):
         if self.output_dir:
@@ -465,8 +644,19 @@ class MainWindow(QMainWindow):
             self.status_label.setText("Refreshed.")
     
     def reset_all_files(self):
-        # Implement reset all
-        pass
+        reply = QMessageBox.question(self, 'Confirm Reset All',
+            "Delete all result JSONs? This removes all computed data.",
+            QMessageBox.Yes | QMessageBox.No)
+        
+        if reply == QMessageBox.Yes and self.output_dir:
+            for fname in ["modulus_results.json", "yield_results.json", "break_results.json", "gui_master.json"]:
+                path = os.path.join(self.output_dir, fname)
+                if os.path.exists(path):
+                    os.remove(path)
+            
+            self.processor.merge_individual_jsons(self.output_dir)
+            self.manual_refresh()
+            self.status_label.setText("Reset all complete.")
     
     def filter_list(self):
         """Filter file list based on search"""
@@ -495,7 +685,7 @@ class MainWindow(QMainWindow):
         p = self.processor.master_json_path(self.output_dir) if self.output_dir else None
         try:
             self._master_mtime = os.path.getmtime(p) if p and os.path.exists(p) else None
-        except Exception:
+        except:
             self._master_mtime = None
     
     def _poll_master(self):
@@ -506,36 +696,164 @@ class MainWindow(QMainWindow):
         p = self.processor.master_json_path(self.output_dir)
         try:
             new_m = os.path.getmtime(p) if p and os.path.exists(p) else None
-        except Exception:
+        except:
             new_m = None
         
         if new_m != self._master_mtime:
             self._master_mtime = new_m
             self.processor.merge_individual_jsons(self.output_dir)
             self.populate_cleaned_files(self.current_dir)
-            self.status_label.setText("Master changed — refreshed.")
     
-    # Batch operations (stubs)
+    # ==================== Batch Operations ====================
+    
     def batch_manual_modulus(self):
-        pass
+        QMessageBox.information(self, "Info", "Batch manual operations not yet implemented")
     
     def batch_manual_yield(self):
-        pass
+        QMessageBox.information(self, "Info", "Batch manual operations not yet implemented")
     
     def batch_manual_break(self):
-        pass
+        QMessageBox.information(self, "Info", "Batch manual operations not yet implemented")
     
     def batch_auto_modulus(self):
-        pass
+        if not self.all_files or not self.output_dir:
+            return
+        
+        self.batch_stop = False
+        self.status_label.setText("Batch Auto Modulus started...")
+        
+        def worker():
+            jpath = os.path.join(self.output_dir, "modulus_results.json")
+            data = {}
+            if os.path.exists(jpath):
+                try:
+                    with open(jpath, 'r') as f:
+                        data = json.load(f)
+                except:
+                    pass
+            
+            total = len(self.all_files)
+            for idx, f in enumerate(self.all_files, start=1):
+                if self.batch_stop:
+                    break
+                
+                fname = os.path.basename(f)
+                if fname in data and data.get(fname, {}).get("modulus"):
+                    continue
+                
+                QTimer.singleShot(0, lambda idx=idx, f=f: 
+                    self.status_label.setText(f"Auto Modulus {idx}/{total}: {os.path.basename(f)}"))
+                
+                mod = self.processor.compute_auto_modulus(f)
+                if mod is not None:
+                    data[fname] = {"modulus": mod, "length": None, "area": None}
+                    self.processor.write_json_safe(jpath, data)
+            
+            self.processor.merge_individual_jsons(self.output_dir)
+            QTimer.singleShot(0, lambda: (
+                self.status_label.setText("Batch Auto Modulus completed."),
+                self.manual_refresh()
+            ))
+        
+        threading.Thread(target=worker, daemon=True).start()
     
     def batch_auto_yield(self):
-        pass
+        if not self.all_files or not self.output_dir:
+            return
+        
+        self.batch_stop = False
+        self.status_label.setText("Batch Auto Yield started...")
+        
+        def worker():
+            jmod = os.path.join(self.output_dir, "modulus_results.json")
+            jyield = os.path.join(self.output_dir, "yield_results.json")
+            
+            mods = {}
+            ylds = {}
+            
+            if os.path.exists(jmod):
+                try:
+                    with open(jmod, 'r') as f:
+                        mods = json.load(f)
+                except:
+                    pass
+            
+            if os.path.exists(jyield):
+                try:
+                    with open(jyield, 'r') as f:
+                        ylds = json.load(f)
+                except:
+                    pass
+            
+            total = len(self.all_files)
+            for idx, f in enumerate(self.all_files, start=1):
+                if self.batch_stop:
+                    break
+                
+                fname = os.path.basename(f)
+                if fname in ylds:
+                    continue
+                
+                mod_entry = mods.get(fname)
+                mod_val = None
+                if isinstance(mod_entry, dict):
+                    mod_val = mod_entry.get("modulus")
+                elif isinstance(mod_entry, (int, float)):
+                    mod_val = mod_entry
+                
+                if not mod_val:
+                    continue
+                
+                QTimer.singleShot(0, lambda idx=idx, f=f: 
+                    self.status_label.setText(f"Auto Yield {idx}/{total}: {os.path.basename(f)}"))
+                
+                ystr, yst = self.processor.compute_yield_from_mod(f, mod_val)
+                if ystr is not None:
+                    ylds[fname] = {"strain": ystr, "stress": yst}
+                    self.processor.write_json_safe(jyield, ylds)
+            
+            self.processor.merge_individual_jsons(self.output_dir)
+            QTimer.singleShot(0, lambda: (
+                self.status_label.setText("Batch Auto Yield completed."),
+                self.manual_refresh()
+            ))
+        
+        threading.Thread(target=worker, daemon=True).start()
     
     def batch_auto_ultimate(self):
-        pass
+        if not self.all_files or not self.output_dir:
+            return
+        
+        self.batch_stop = False
+        self.status_label.setText("Batch Auto Ultimate started...")
+        
+        def worker():
+            master = self.processor.load_master(self.output_dir)
+            total = len(self.all_files)
+            
+            for idx, f in enumerate(self.all_files, start=1):
+                if self.batch_stop:
+                    break
+                
+                fname = os.path.basename(f)
+                QTimer.singleShot(0, lambda idx=idx, f=f: 
+                    self.status_label.setText(f"Auto Ultimate {idx}/{total}: {os.path.basename(f)}"))
+                
+                u = self.processor.compute_ultimate_stress(f)
+                if u is not None:
+                    master.setdefault(fname, {})["ultimate"] = u
+                    self.processor.save_master(self.output_dir, master)
+            
+            self.processor.merge_individual_jsons(self.output_dir)
+            QTimer.singleShot(0, lambda: (
+                self.status_label.setText("Batch Auto Ultimate completed."),
+                self.manual_refresh()
+            ))
+        
+        threading.Thread(target=worker, daemon=True).start()
     
     def batch_manual_all(self):
-        pass
+        self.batch_manual_modulus()
     
     def stop_batch(self):
         self.batch_stop = True

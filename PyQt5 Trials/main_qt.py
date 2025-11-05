@@ -39,7 +39,7 @@ def main():
     palette.setColor(QPalette.HighlightedText, Qt.black)
     app.setPalette(palette)
     
-    # Optional: Apply custom stylesheet for even more modern look
+    # Custom stylesheet for modern look
     app.setStyleSheet("""
         QMainWindow {
             background-color: #353535;
@@ -51,6 +51,7 @@ def main():
             padding: 8px 16px;
             border-radius: 4px;
             font-weight: bold;
+            min-height: 28px;
         }
         QPushButton:hover {
             background-color: #3b92ea;
@@ -68,6 +69,7 @@ def main():
             border-radius: 3px;
             padding: 6px;
             color: white;
+            min-height: 24px;
         }
         QLineEdit:focus, QComboBox:focus {
             border: 1px solid #2a82da;
@@ -77,6 +79,7 @@ def main():
             border: 1px solid #555555;
             border-radius: 3px;
             alternate-background-color: #323232;
+            color: white;
         }
         QTreeWidget::item:selected, QListWidget::item:selected {
             background-color: #2a82da;
@@ -85,36 +88,31 @@ def main():
         QTreeWidget::item:hover, QListWidget::item:hover {
             background-color: #3a3a3a;
         }
+        QHeaderView::section {
+            background-color: #2b2b2b;
+            color: white;
+            padding: 4px;
+            border: 1px solid #555555;
+        }
         QGroupBox {
             border: 1px solid #555555;
             border-radius: 5px;
             margin-top: 10px;
             font-weight: bold;
             color: #2a82da;
+            padding-top: 10px;
         }
         QGroupBox::title {
             subcontrol-origin: margin;
             left: 10px;
             padding: 0 5px;
         }
-        QTabWidget::pane {
-            border: 1px solid #555555;
-            border-radius: 3px;
-        }
-        QTabBar::tab {
-            background-color: #2b2b2b;
+        QRadioButton {
             color: white;
-            padding: 8px 20px;
-            border: 1px solid #555555;
-            border-bottom: none;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
         }
-        QTabBar::tab:selected {
-            background-color: #2a82da;
-        }
-        QTabBar::tab:hover {
-            background-color: #3a3a3a;
+        QRadioButton::indicator {
+            width: 13px;
+            height: 13px;
         }
         QProgressBar {
             border: 1px solid #555555;
@@ -145,21 +143,8 @@ def main():
         QMenu::item:selected {
             background-color: #2a82da;
         }
-        QToolBar {
-            background-color: #2b2b2b;
-            border: none;
-            spacing: 5px;
-            padding: 5px;
-        }
-        QToolButton {
-            background-color: transparent;
-            border: none;
+        QLabel {
             color: white;
-            padding: 5px;
-            border-radius: 3px;
-        }
-        QToolButton:hover {
-            background-color: #3a3a3a;
         }
     """)
     

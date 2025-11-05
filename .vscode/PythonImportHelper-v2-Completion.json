@@ -68,12 +68,390 @@
         "documentation": {}
     },
     {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QThread",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSignal",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QTimer",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSignal",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QObject",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
         "label": "threading",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "threading",
         "description": "threading",
         "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "QPixmap",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QImage",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QIcon",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QColor",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2QT",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2QT",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2QT",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "BASEDIR",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CHARL",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AREA",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "ICON_PIXELS",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DataProcessor",
+        "importPath": "core.data_processor",
+        "description": "core.data_processor",
+        "isExtraImport": true,
+        "detail": "core.data_processor",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "importPath": "gui.main_window",
+        "description": "gui.main_window",
+        "isExtraImport": true,
+        "detail": "gui.main_window",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
         "documentation": {}
     },
     {
@@ -158,30 +536,6 @@
         "documentation": {}
     },
     {
-        "label": "filedialog",
-        "importPath": "tkinter",
-        "description": "tkinter",
-        "isExtraImport": true,
-        "detail": "tkinter",
-        "documentation": {}
-    },
-    {
-        "label": "messagebox",
-        "importPath": "tkinter",
-        "description": "tkinter",
-        "isExtraImport": true,
-        "detail": "tkinter",
-        "documentation": {}
-    },
-    {
-        "label": "ttk",
-        "importPath": "tkinter",
-        "description": "tkinter",
-        "isExtraImport": true,
-        "detail": "tkinter",
-        "documentation": {}
-    },
-    {
         "label": "ttk",
         "importPath": "tkinter",
         "description": "tkinter",
@@ -227,392 +581,6 @@
         "description": "tkinter",
         "isExtraImport": true,
         "detail": "tkinter",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "QMainWindow",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QWidget",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QVBoxLayout",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QHBoxLayout",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QPushButton",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QLabel",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QLineEdit",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QTreeWidget",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QTreeWidgetItem",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QSplitter",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QStatusBar",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QFileDialog",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QMessageBox",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QAction",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QMenuBar",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QMenu",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QProgressBar",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "QApplication",
-        "importPath": "PyQt5.QtWidgets",
-        "description": "PyQt5.QtWidgets",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtWidgets",
-        "documentation": {}
-    },
-    {
-        "label": "Qt",
-        "importPath": "PyQt5.QtCore",
-        "description": "PyQt5.QtCore",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "pyqtSignal",
-        "importPath": "PyQt5.QtCore",
-        "description": "PyQt5.QtCore",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "QThread",
-        "importPath": "PyQt5.QtCore",
-        "description": "PyQt5.QtCore",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "QTimer",
-        "importPath": "PyQt5.QtCore",
-        "description": "PyQt5.QtCore",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "Qt",
-        "importPath": "PyQt5.QtCore",
-        "description": "PyQt5.QtCore",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtCore",
-        "documentation": {}
-    },
-    {
-        "label": "QIcon",
-        "importPath": "PyQt5.QtGui",
-        "description": "PyQt5.QtGui",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtGui",
-        "documentation": {}
-    },
-    {
-        "label": "QPixmap",
-        "importPath": "PyQt5.QtGui",
-        "description": "PyQt5.QtGui",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtGui",
-        "documentation": {}
-    },
-    {
-        "label": "QImage",
-        "importPath": "PyQt5.QtGui",
-        "description": "PyQt5.QtGui",
-        "isExtraImport": true,
-        "detail": "PyQt5.QtGui",
-        "documentation": {}
-    },
-    {
-        "label": "FigureCanvasQTAgg",
-        "importPath": "matplotlib.backends.backend_qt5agg",
-        "description": "matplotlib.backends.backend_qt5agg",
-        "isExtraImport": true,
-        "detail": "matplotlib.backends.backend_qt5agg",
-        "documentation": {}
-    },
-    {
-        "label": "NavigationToolbar2QT",
-        "importPath": "matplotlib.backends.backend_qt5agg",
-        "description": "matplotlib.backends.backend_qt5agg",
-        "isExtraImport": true,
-        "detail": "matplotlib.backends.backend_qt5agg",
-        "documentation": {}
-    },
-    {
-        "label": "Figure",
-        "importPath": "matplotlib.figure",
-        "description": "matplotlib.figure",
-        "isExtraImport": true,
-        "detail": "matplotlib.figure",
-        "documentation": {}
-    },
-    {
-        "label": "Figure",
-        "importPath": "matplotlib.figure",
-        "description": "matplotlib.figure",
-        "isExtraImport": true,
-        "detail": "matplotlib.figure",
-        "documentation": {}
-    },
-    {
-        "label": "Figure",
-        "importPath": "matplotlib.figure",
-        "description": "matplotlib.figure",
-        "isExtraImport": true,
-        "detail": "matplotlib.figure",
-        "documentation": {}
-    },
-    {
-        "label": "VERSION",
-        "importPath": "constants",
-        "description": "constants",
-        "isExtraImport": true,
-        "detail": "constants",
-        "documentation": {}
-    },
-    {
-        "label": "BASEDIR",
-        "importPath": "constants",
-        "description": "constants",
-        "isExtraImport": true,
-        "detail": "constants",
-        "documentation": {}
-    },
-    {
-        "label": "DEFAULT_CHARL",
-        "importPath": "constants",
-        "description": "constants",
-        "isExtraImport": true,
-        "detail": "constants",
-        "documentation": {}
-    },
-    {
-        "label": "DEFAULT_AREA",
-        "importPath": "constants",
-        "description": "constants",
-        "isExtraImport": true,
-        "detail": "constants",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "constants",
-        "description": "constants",
-        "isExtraImport": true,
-        "detail": "constants",
-        "documentation": {}
-    },
-    {
-        "label": "DataProcessor",
-        "importPath": "core.data_processor",
-        "description": "core.data_processor",
-        "isExtraImport": true,
-        "detail": "core.data_processor",
-        "documentation": {}
-    },
-    {
-        "label": "CleaningWizard",
-        "importPath": "gui.cleaning_wizard",
-        "description": "gui.cleaning_wizard",
-        "isExtraImport": true,
-        "detail": "gui.cleaning_wizard",
-        "documentation": {}
-    },
-    {
-        "label": "ModulusDialog",
-        "importPath": "gui.modulus_dialog",
-        "description": "gui.modulus_dialog",
-        "isExtraImport": true,
-        "detail": "gui.modulus_dialog",
-        "documentation": {}
-    },
-    {
-        "label": "YieldDialog",
-        "importPath": "gui.yield_dialog",
-        "description": "gui.yield_dialog",
-        "isExtraImport": true,
-        "detail": "gui.yield_dialog",
-        "documentation": {}
-    },
-    {
-        "label": "BreakpointDialog",
-        "importPath": "gui.breakpoint_dialog",
-        "description": "gui.breakpoint_dialog",
-        "isExtraImport": true,
-        "detail": "gui.breakpoint_dialog",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "MainWindow",
-        "importPath": "gui.main_window",
-        "description": "gui.main_window",
-        "isExtraImport": true,
-        "detail": "gui.main_window",
-        "documentation": {}
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
         "documentation": {}
     },
     {
@@ -750,21 +718,30 @@
         "documentation": {}
     },
     {
-        "label": "CleaningWizard",
+        "label": "CleaningWorker",
         "kind": 6,
         "importPath": "PyQt5 Trials.gui.cleaning_wizard",
         "description": "PyQt5 Trials.gui.cleaning_wizard",
-        "peekOfCode": "class CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")\n        self.geometry(\"980x620\")\n        self.minsize(860, 520)\n        self.transient(parent)\n        # state\n        self.current_dir = tk.StringVar(value=start_dir or os.getcwd())",
+        "peekOfCode": "class CleaningWorker(QThread):\n    \"\"\"Worker thread for file cleaning\"\"\"\n    progress = pyqtSignal(str)\n    finished = pyqtSignal(int, int)  # succeeded, failed\n    def __init__(self, files, output_dir, percent=None):\n        super().__init__()\n        self.files = files\n        self.output_dir = output_dir\n        self.percent = percent\n        self.stop_requested = False",
         "detail": "PyQt5 Trials.gui.cleaning_wizard",
         "documentation": {}
     },
     {
-        "label": "BACKEND_AVAILABLE",
-        "kind": 5,
+        "label": "CleaningWizard",
+        "kind": 6,
         "importPath": "PyQt5 Trials.gui.cleaning_wizard",
         "description": "PyQt5 Trials.gui.cleaning_wizard",
-        "peekOfCode": "BACKEND_AVAILABLE = True\ntry:\n    import clean_wiz_backend\nexcept:\n    BACKEND_AVAILABLE = False\nclass CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")",
+        "peekOfCode": "class CleaningWizard(QDialog):\n    \"\"\"Wizard for cleaning and processing raw data files\"\"\"\n    def __init__(self, parent, start_dir):\n        super().__init__(parent)\n        self.start_dir = start_dir\n        self.current_dir = start_dir\n        self.file_list = []\n        self.worker = None\n        self.setWindowTitle(\"Clean Files Wizard\")\n        self.resize(980, 620)",
         "detail": "PyQt5 Trials.gui.cleaning_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "WorkerSignals",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.main_window",
+        "description": "PyQt5 Trials.gui.main_window",
+        "peekOfCode": "class WorkerSignals(QObject):\n    \"\"\"Signals for worker threads\"\"\"\n    finished = pyqtSignal()\n    error = pyqtSignal(str)\n    result = pyqtSignal(object)\n    progress = pyqtSignal(str)\nclass MainWindow(QMainWindow):\n    \"\"\"Modern PyQt5 main window for Polymer PostMortem\"\"\"\n    def __init__(self):\n        super().__init__()",
+        "detail": "PyQt5 Trials.gui.main_window",
         "documentation": {}
     },
     {
@@ -777,11 +754,47 @@
         "documentation": {}
     },
     {
+        "label": "ModulusDialog",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.modulus_dialog",
+        "description": "PyQt5 Trials.gui.modulus_dialog",
+        "peekOfCode": "class ModulusDialog(QDialog):\n    \"\"\"Dialog for calculating modulus with interactive point selection\"\"\"\n    def __init__(self, parent, filepath, processor, output_dir):\n        super().__init__(parent)\n        self.filepath = filepath\n        self.processor = processor\n        self.output_dir = output_dir\n        self.charl = parent.charl if hasattr(parent, 'charl') else 85.0\n        self.area = parent.area if hasattr(parent, 'area') else 62.5\n        self.setWindowTitle(f\"Modulus - {os.path.basename(filepath)}\")",
+        "detail": "PyQt5 Trials.gui.modulus_dialog",
+        "documentation": {}
+    },
+    {
+        "label": "PreviewDialog",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.preview_dialog",
+        "description": "PyQt5 Trials.gui.preview_dialog",
+        "peekOfCode": "class PreviewDialog(QDialog):\n    \"\"\"Dialog for previewing file contents\"\"\"\n    def __init__(self, parent, filepath):\n        super().__init__(parent)\n        self.filepath = filepath\n        self.setWindowTitle(f\"Preview - {os.path.basename(filepath)}\")\n        self.resize(1000, 600)\n        self.setup_ui()\n        self.load_data()\n    def setup_ui(self):",
+        "detail": "PyQt5 Trials.gui.preview_dialog",
+        "documentation": {}
+    },
+    {
+        "label": "YieldDialog",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.yield_dialog",
+        "description": "PyQt5 Trials.gui.yield_dialog",
+        "peekOfCode": "class YieldDialog(QDialog):\n    \"\"\"Dialog for calculating yield point\"\"\"\n    def __init__(self, parent, filepath, processor, output_dir):\n        super().__init__(parent)\n        self.filepath = filepath\n        self.processor = processor\n        self.output_dir = output_dir\n        self.setWindowTitle(f\"Yield - {os.path.basename(filepath)}\")\n        self.resize(1000, 700)\n        self.setup_ui()",
+        "detail": "PyQt5 Trials.gui.yield_dialog",
+        "documentation": {}
+    },
+    {
         "label": "VERSION",
         "kind": 5,
         "importPath": "PyQt5 Trials.constants",
         "description": "PyQt5 Trials.constants",
-        "peekOfCode": "VERSION = \"2.0.0\"\nDEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "peekOfCode": "VERSION = \"2.0.0\"\nICON_PIXELS = 16\nDEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "ICON_PIXELS",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "ICON_PIXELS = 16\nDEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
         "detail": "PyQt5 Trials.constants",
         "documentation": {}
     },
@@ -790,7 +803,7 @@
         "kind": 5,
         "importPath": "PyQt5 Trials.constants",
         "description": "PyQt5 Trials.constants",
-        "peekOfCode": "DEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "peekOfCode": "DEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
         "detail": "PyQt5 Trials.constants",
         "documentation": {}
     },
@@ -799,7 +812,7 @@
         "kind": 5,
         "importPath": "PyQt5 Trials.constants",
         "description": "PyQt5 Trials.constants",
-        "peekOfCode": "DEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "peekOfCode": "DEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
         "detail": "PyQt5 Trials.constants",
         "documentation": {}
     },
@@ -808,7 +821,7 @@
         "kind": 5,
         "importPath": "PyQt5 Trials.constants",
         "description": "PyQt5 Trials.constants",
-        "peekOfCode": "MASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "peekOfCode": "MASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
         "detail": "PyQt5 Trials.constants",
         "documentation": {}
     },
@@ -817,7 +830,7 @@
         "kind": 5,
         "importPath": "PyQt5 Trials.constants",
         "description": "PyQt5 Trials.constants",
-        "peekOfCode": "BASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "peekOfCode": "BASEDIR = os.path.expanduser(\"~/Documents/TensileData\")\nif not os.path.exists(BASEDIR):\n    BASEDIR = os.getcwd()",
         "detail": "PyQt5 Trials.constants",
         "documentation": {}
     },

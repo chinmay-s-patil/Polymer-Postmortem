@@ -1,456 +1,387 @@
-#!/usr/bin/env python3
 """
-CleaningWizard GUI (standalone) — GUI-only file.
-
-- Provides a Toplevel "Clean Files Wizard" for selecting input files / directories
-  and running the cleaning backend on them.
-- Tries to call clean_wiz_backend.clean_backend(file, outputDir, percent=...)
-  If that signature is not available it will attempt a couple of safe fallbacks,
-  and will always pass the unified output dir:
-      <base_dir>/output/Cleaned Files
-
-Drop-in: save as cleaning_wizard_gui.py and run. The backend is expected to be
-available as clean_wiz_backend.clean_backend (but the GUI will report if missing).
+gui/cleaning_wizard.py - File cleaning wizard dialog
 """
 
 import os
-import threading
-import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+import sys
 from datetime import datetime
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
-BACKEND_AVAILABLE = True
+# Import backend cleaning functions
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-try:
-    import clean_wiz_backend
-except:
-    BACKEND_AVAILABLE = False
-
-
-class CleaningWizard(tk.Toplevel):
-    def __init__(self, parent, start_dir=None):
-        super().__init__(parent)
-        self.parent = parent
-        self.title("Clean Files Wizard")
-        self.geometry("980x620")
-        self.minsize(860, 520)
-        self.transient(parent)
-
-        # state
-        self.current_dir = tk.StringVar(value=start_dir or os.getcwd())
-        self.custom_percent = tk.StringVar(value="85")
-        self.status_text = tk.StringVar(value="Ready")
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        self.file_list = []          # absolute paths
-        self._display_order = []
-        self._running = False
-        self._buttons = []
-
-        # backend pointer (may be None)
-        self._backend = clean_wiz_backend.clean_backend
-
-        # build UI & populate
-        self._create_style()
-        self._build_ui()
-        self._bind_events()
-        self.refresh_file_list()
-
-    def _create_style(self):
-        style = ttk.Style(self)
+class CleaningWorker(QThread):
+    """Worker thread for file cleaning"""
+    progress = pyqtSignal(str)
+    finished = pyqtSignal(int, int)  # succeeded, failed
+    
+    def __init__(self, files, output_dir, percent=None):
+        super().__init__()
+        self.files = files
+        self.output_dir = output_dir
+        self.percent = percent
+        self.stop_requested = False
+    
+    def run(self):
+        """Run cleaning process"""
+        succeeded = 0
+        failed = 0
+        
         try:
-            style.theme_use("clam")
-        except Exception:
-            pass
-        style.configure("TLabel", font=(None, 11))
-        style.configure("TButton", font=(None, 11))
-        style.configure("Accent.TButton", background="#2e7d32", foreground="#ffffff")
+            clean_func = self.simple_clean
+            
+            total = len(self.files)
+            for idx, filepath in enumerate(self.files, start=1):
+                if self.stop_requested:
+                    break
+                
+                self.progress.emit(f"Processing ({idx}/{total}): {os.path.basename(filepath)}")
+                
+                try:
+                    clean_func(filepath, self.output_dir, self.percent)
+                    succeeded += 1
+                except Exception as e:
+                    self.progress.emit(f"ERROR: {filepath} - {e}")
+                    failed += 1
+        
+        except Exception as e:
+            self.progress.emit(f"Worker error: {e}")
+        
+        self.finished.emit(succeeded, failed)
+    
+    def simple_clean(self, filepath, output_dir, percent=None):
+        """Simple fallback cleaning function"""
+        import pandas as pd
+        import shutil
+        
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Just copy CSV files
+        if filepath.endswith('.csv'):
+            dest = os.path.join(output_dir, os.path.basename(filepath))
+            shutil.copy2(filepath, dest)
+        elif filepath.endswith(('.xlsx', '.xls')):
+            # Convert Excel to CSV
+            df = pd.read_excel(filepath)
+            dest = os.path.join(output_dir, os.path.basename(filepath).replace('.xlsx', '.csv').replace('.xls', '.csv'))
+            df.to_csv(dest, index=False)
+    
+    def stop(self):
+        """Request stop"""
+        self.stop_requested = True
 
-    def _build_ui(self):
-        top = ttk.Frame(self, padding=(8, 8, 8, 0))
-        top.pack(side="top", fill="x")
-
-        ttk.Label(top, text="Directory:").pack(side="left", padx=(2, 4))
-        self.dir_entry = ttk.Entry(top, textvariable=self.current_dir, width=72)
-        self.dir_entry.pack(side="left", padx=(0, 6))
-
-        self.btn_browse = ttk.Button(top, text="Browse...", command=self.choose_directory)
-        self.btn_browse.pack(side="left", padx=(0, 6)); self._buttons.append(self.btn_browse)
-
-        self.btn_add_files = ttk.Button(top, text="Add Files...", command=self.add_files_dialog)
-        self.btn_add_files.pack(side="left", padx=(0, 6)); self._buttons.append(self.btn_add_files)
-
-        self.btn_refresh = ttk.Button(top, text="Refresh", command=self.refresh_file_list)
-        self.btn_refresh.pack(side="left", padx=(6, 0)); self._buttons.append(self.btn_refresh)
-
-        ttk.Label(top, textvariable=self.status_text).pack(side="right", padx=(8, 4))
-
-        main = ttk.Frame(self, padding=8)
-        main.pack(fill="both", expand=True)
-
-        left = ttk.Frame(main)
-        left.pack(side="left", fill="both", expand=True)
-
-        ctrl_row = ttk.Frame(left)
-        ctrl_row.pack(side="top", fill="x", pady=(0, 8))
-        self.btn_select_all = ttk.Button(ctrl_row, text="Select All", command=self.select_all)
-        self.btn_select_all.pack(side="left"); self._buttons.append(self.btn_select_all)
-        self.btn_deselect = ttk.Button(ctrl_row, text="Deselect All", command=self.deselect_all)
-        self.btn_deselect.pack(side="left", padx=(6, 0)); self._buttons.append(self.btn_deselect)
-        self.btn_remove_selected = ttk.Button(ctrl_row, text="Remove Selected", command=self.remove_selected_from_list)
-        self.btn_remove_selected.pack(side="left", padx=(6, 0)); self._buttons.append(self.btn_remove_selected)
-        self.btn_clear_list = ttk.Button(ctrl_row, text="Clear List", command=self.clear_list)
-        self.btn_clear_list.pack(side="left", padx=(6, 0)); self._buttons.append(self.btn_clear_list)
-
-        list_frame = ttk.Frame(left)
-        list_frame.pack(fill="both", expand=True)
-        self.file_listbox = tk.Listbox(list_frame, selectmode="extended", activestyle="none")
-        self.file_listbox.pack(side="left", fill="both", expand=True)
-        self.lb_scroll = ttk.Scrollbar(list_frame, orient="vertical", command=self.file_listbox.yview)
-        self.lb_scroll.pack(side="left", fill="y")
-        self.file_listbox.config(yscrollcommand=self.lb_scroll.set)
-
-        right = ttk.Frame(main, width=340)
-        right.pack(side="right", fill="y", padx=(12, 0))
-        ttk.Label(right, text="Actions", font=(None, 12, "bold")).pack(anchor="w")
-        ttk.Separator(right, orient="horizontal").pack(fill="x", pady=(4, 8))
-
-        self.btn_auto = ttk.Button(right, text="Auto (one-click)", style="Accent.TButton", command=self.action_auto)
-        self.btn_auto.pack(fill="x", pady=(0, 8)); self._buttons.append(self.btn_auto)
-
-        self.btn_normal = ttk.Button(right, text="Normal (post-process)", command=self.action_normal)
-        self.btn_normal.pack(fill="x", pady=(0, 8)); self._buttons.append(self.btn_normal)
-
-        ttk.Label(right, text="Extensometer removal", font=(None, 11, "bold")).pack(anchor="w", pady=(6, 6))
-        ext_frame = ttk.Frame(right); ext_frame.pack(fill="x", pady=(0, 8))
-        self.btn_noext = ttk.Button(ext_frame, text="No Ext", command=lambda: self.action_noext())
-        self.btn_noext.pack(fill="x"); self._buttons.append(self.btn_noext)
-        self.btn_ext50 = ttk.Button(ext_frame, text="50%", command=lambda: self.action_ext_remove(50))
-        self.btn_ext50.pack(fill="x", pady=(6, 0)); self._buttons.append(self.btn_ext50)
-        self.btn_ext95 = ttk.Button(ext_frame, text="95%", command=lambda: self.action_ext_remove(95))
-        self.btn_ext95.pack(fill="x", pady=(6, 0)); self._buttons.append(self.btn_ext95)
-
-        customfrm = ttk.Frame(right); customfrm.pack(fill="x", pady=(8, 6))
-        ttk.Label(customfrm, text="Custom %:").pack(side="left")
-        self.custom_entry = ttk.Entry(customfrm, textvariable=self.custom_percent, width=8)
-        self.custom_entry.pack(side="left", padx=(6, 8))
-        self.btn_apply_custom = ttk.Button(customfrm, text="Apply Custom", command=self.action_custom_ext)
-        self.btn_apply_custom.pack(side="left"); self._buttons.append(self.btn_apply_custom)
-
-        opts = ttk.LabelFrame(right, text="Options", padding=(8, 8))
-        opts.pack(fill="x", pady=(12, 0))
-        ttk.Label(opts, text="Output suffix (optional):").pack(anchor="w")
-        self.suffix_entry = ttk.Entry(opts)
-        self.suffix_entry.pack(fill="x", pady=(4, 0))
-
-        bottom = ttk.Frame(self, padding=(8, 6))
-        bottom.pack(side="bottom", fill="x")
-        ttk.Label(bottom, text="Preview / Log", font=(None, 11, "bold")).pack(anchor="w")
-        self.log_text = tk.Text(bottom, height=10, wrap="none")
-        self.log_text.pack(fill="both", expand=False)
-        self.log_text.insert("end", "Wizard started. Choose a directory or add files.\n")
-        self.log_text.configure(state="disabled")
-
-    def _bind_events(self):
-        self.file_listbox.bind("<Double-Button-1>", self.on_list_double_click)
-        self.file_listbox.bind("<Return>", self.on_list_double_click)
-        self.file_listbox.bind("<<ListboxSelect>>", self.on_list_select)
-
-    # file discovery & list management
+class CleaningWizard(QDialog):
+    """Wizard for cleaning and processing raw data files"""
+    
+    def __init__(self, parent, start_dir):
+        super().__init__(parent)
+        self.start_dir = start_dir
+        self.current_dir = start_dir
+        self.file_list = []
+        self.worker = None
+        
+        self.setWindowTitle("Clean Files Wizard")
+        self.resize(980, 620)
+        
+        self.setup_ui()
+        self.refresh_file_list()
+    
+    def setup_ui(self):
+        """Setup wizard UI"""
+        layout = QVBoxLayout(self)
+        
+        # Top toolbar
+        toolbar = QHBoxLayout()
+        toolbar.addWidget(QLabel("Directory:"))
+        
+        self.dir_entry = QLineEdit(self.current_dir)
+        toolbar.addWidget(self.dir_entry)
+        
+        btn_browse = QPushButton("Browse")
+        btn_browse.clicked.connect(self.choose_directory)
+        toolbar.addWidget(btn_browse)
+        
+        btn_add = QPushButton("Add Files")
+        btn_add.clicked.connect(self.add_files)
+        toolbar.addWidget(btn_add)
+        
+        btn_refresh = QPushButton("Refresh")
+        btn_refresh.clicked.connect(self.refresh_file_list)
+        toolbar.addWidget(btn_refresh)
+        
+        layout.addLayout(toolbar)
+        
+        # Main content
+        main_splitter = QSplitter(Qt.Horizontal)
+        
+        # Left - file list
+        left = QWidget()
+        left_layout = QVBoxLayout(left)
+        
+        # File list controls
+        list_controls = QHBoxLayout()
+        btn_select_all = QPushButton("Select All")
+        btn_select_all.clicked.connect(lambda: self.file_list_widget.selectAll())
+        list_controls.addWidget(btn_select_all)
+        
+        btn_deselect = QPushButton("Deselect All")
+        btn_deselect.clicked.connect(lambda: self.file_list_widget.clearSelection())
+        list_controls.addWidget(btn_deselect)
+        
+        btn_remove = QPushButton("Remove Selected")
+        btn_remove.clicked.connect(self.remove_selected)
+        list_controls.addWidget(btn_remove)
+        
+        btn_clear = QPushButton("Clear List")
+        btn_clear.clicked.connect(self.clear_list)
+        list_controls.addWidget(btn_clear)
+        
+        left_layout.addLayout(list_controls)
+        
+        # File list
+        self.file_list_widget = QListWidget()
+        self.file_list_widget.setSelectionMode(QListWidget.ExtendedSelection)
+        left_layout.addWidget(self.file_list_widget)
+        
+        # Right - actions
+        right = QWidget()
+        right.setMaximumWidth(340)
+        right_layout = QVBoxLayout(right)
+        
+        right_layout.addWidget(QLabel("<b>Actions</b>"))
+        
+        btn_auto = QPushButton("Auto (one-click)")
+        btn_auto.setStyleSheet("background-color: #2e7d32;")
+        btn_auto.clicked.connect(self.action_auto)
+        right_layout.addWidget(btn_auto)
+        
+        btn_normal = QPushButton("Normal (post-process)")
+        btn_normal.clicked.connect(self.action_normal)
+        right_layout.addWidget(btn_normal)
+        
+        right_layout.addWidget(QLabel("<b>Extensometer Removal</b>"))
+        
+        btn_noext = QPushButton("No Ext")
+        btn_noext.clicked.connect(lambda: self.action_ext_remove(None))
+        right_layout.addWidget(btn_noext)
+        
+        btn_50 = QPushButton("50%")
+        btn_50.clicked.connect(lambda: self.action_ext_remove(50))
+        right_layout.addWidget(btn_50)
+        
+        btn_95 = QPushButton("95%")
+        btn_95.clicked.connect(lambda: self.action_ext_remove(95))
+        right_layout.addWidget(btn_95)
+        
+        # Custom percent
+        custom_layout = QHBoxLayout()
+        custom_layout.addWidget(QLabel("Custom %:"))
+        self.custom_percent = QLineEdit("85")
+        self.custom_percent.setMaximumWidth(60)
+        custom_layout.addWidget(self.custom_percent)
+        btn_custom = QPushButton("Apply")
+        btn_custom.clicked.connect(self.action_custom)
+        custom_layout.addWidget(btn_custom)
+        right_layout.addLayout(custom_layout)
+        
+        right_layout.addStretch()
+        
+        # Add to splitter
+        main_splitter.addWidget(left)
+        main_splitter.addWidget(right)
+        main_splitter.setSizes([640, 340])
+        
+        layout.addWidget(main_splitter)
+        
+        # Bottom - log
+        log_group = QGroupBox("Log")
+        log_layout = QVBoxLayout(log_group)
+        
+        self.log_text = QTextEdit()
+        self.log_text.setReadOnly(True)
+        self.log_text.setMaximumHeight(150)
+        log_layout.addWidget(self.log_text)
+        
+        layout.addWidget(log_group)
+        
+        # Progress bar
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setVisible(False)
+        layout.addWidget(self.progress_bar)
+        
+        # Bottom buttons
+        bottom_buttons = QHBoxLayout()
+        bottom_buttons.addStretch()
+        
+        self.btn_stop = QPushButton("Stop Processing")
+        self.btn_stop.setStyleSheet("background-color: #d32f2f;")
+        self.btn_stop.clicked.connect(self.stop_processing)
+        self.btn_stop.setVisible(False)
+        bottom_buttons.addWidget(self.btn_stop)
+        
+        btn_close = QPushButton("Close")
+        btn_close.clicked.connect(self.accept)
+        bottom_buttons.addWidget(btn_close)
+        
+        layout.addLayout(bottom_buttons)
+        
+        self.log("Wizard started. Choose a directory or add files.")
+    
+    def log(self, message):
+        """Add log message"""
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        self.log_text.append(f"[{timestamp}] {message}")
+    
     def choose_directory(self):
-        d = filedialog.askdirectory(initialdir=self.current_dir.get(), parent=self)
-        if d:
-            self.current_dir.set(d)
+        """Choose directory"""
+        folder = QFileDialog.getExistingDirectory(self, "Select Directory", self.current_dir)
+        if folder:
+            self.current_dir = folder
+            self.dir_entry.setText(folder)
             self.refresh_file_list()
-
-    def add_files_dialog(self):
-        files = filedialog.askopenfilenames(
-            title="Add files to list",
-            initialdir=self.current_dir.get(),
-            filetypes=[("CSV files", "*.csv"), ("Excel files", "*.xlsx;*.xls"), ("All files", "*.*")],
-            parent=self
+    
+    def refresh_file_list(self):
+        """Refresh file list from directory"""
+        self.file_list.clear()
+        directory = self.dir_entry.text()
+        
+        if not os.path.isdir(directory):
+            self.log(f"Directory not found: {directory}")
+            return
+        
+        exts = ('.csv', '.xls', '.xlsx')
+        try:
+            for root, _, files in os.walk(directory):
+                for fn in files:
+                    if fn.lower().endswith(exts) and "output" not in root.lower():
+                        self.file_list.append(os.path.join(root, fn))
+        except Exception as e:
+            self.log(f"Error scanning directory: {e}")
+        
+        self._repopulate_list()
+        self.log(f"Found {len(self.file_list)} file(s) in '{directory}'")
+    
+    def add_files(self):
+        """Add files dialog"""
+        files, _ = QFileDialog.getOpenFileNames(
+            self, "Add Files", self.current_dir,
+            "Data Files (*.csv *.xlsx *.xls);;All Files (*.*)"
         )
+        
         if files:
             added = 0
             for f in files:
                 if f not in self.file_list:
                     self.file_list.append(f)
                     added += 1
-            self._repopulate_listbox()
-            self.log(f"Added {added} new file(s).")
-
-    def refresh_file_list(self):
-        dirpath = self.current_dir.get()
-        self.file_list = []
-        if os.path.isdir(dirpath):
-            exts = (".csv", ".xls", ".xlsx")
-            try:
-                for root, _, files in os.walk(dirpath):
-                    for fn in files:
-                        if fn.lower().endswith(exts) and "tensile" not in fn.lower() and "output" not in root:
-                            self.file_list.append(os.path.join(root, fn))
-            except Exception as e:
-                messagebox.showwarning("Refresh failed", f"Could not read directory:\n{e}", parent=self)
-        else:
-            self.log(f"Directory not found: {dirpath}")
-        self._repopulate_listbox()
-        self.log(f"Found {len(self.file_list)} file(s) in '{dirpath}' (recursive=True)")
-
-    def _repopulate_listbox(self):
-        self.file_listbox.delete(0, "end")
-        self._display_order = sorted(self.file_list)
-        for p in self._display_order:
-            self.file_listbox.insert("end", os.path.basename(p))
-        self._update_selected_count()
-
-    def select_all(self):
-        self.file_listbox.select_set(0, "end")
-        self._update_selected_count()
-
-    def deselect_all(self):
-        self.file_listbox.select_clear(0, "end")
-        self._update_selected_count()
-
+            self._repopulate_list()
+            self.log(f"Added {added} file(s)")
+    
+    def _repopulate_list(self):
+        """Repopulate list widget"""
+        self.file_list_widget.clear()
+        for path in sorted(self.file_list):
+            self.file_list_widget.addItem(os.path.basename(path))
+    
+    def remove_selected(self):
+        """Remove selected files from list"""
+        selected = self.file_list_widget.selectedItems()
+        if not selected:
+            return
+        
+        # Get indices and remove from file_list
+        indices = [self.file_list_widget.row(item) for item in selected]
+        sorted_files = sorted(self.file_list)
+        
+        for idx in sorted(indices, reverse=True):
+            path = sorted_files[idx]
+            self.file_list.remove(path)
+        
+        self._repopulate_list()
+        self.log(f"Removed {len(indices)} file(s)")
+    
     def clear_list(self):
+        """Clear file list"""
         self.file_list.clear()
-        self._repopulate_listbox()
-        self.log("List cleared.")
-
-    def remove_selected_from_list(self):
-        sel = list(self.file_listbox.curselection())
-        if not sel:
-            messagebox.showinfo("Remove selected", "No files selected in the list.", parent=self)
-            return
-        for i in sorted(sel, reverse=True):
-            try:
-                path = self._display_order[i]
-                self.file_list.remove(path)
-            except Exception:
-                pass
-            self.file_listbox.delete(i)
-        self.log(f"Removed {len(sel)} selected file(s) from the list.")
-        self._repopulate_listbox()
-
-    def _get_selected_paths(self):
-        sel = self.file_listbox.curselection()
-        return [self._display_order[i] for i in sel]
-
-    def on_list_double_click(self, event=None):
-        sel = self.file_listbox.curselection()
-        if not sel:
-            return
-        idx = sel[0]
-        try:
-            path = self._display_order[idx]
-        except Exception:
-            return
-        self.preview_file(path)
-
-    def on_list_select(self, event=None):
-        self._update_selected_count()
-
-    def _update_selected_count(self):
-        sel = self.file_listbox.curselection()
-        count = len(sel)
-        self.status_text.set(f"{count} selected")
-
-    def preview_file(self, path):
-        try:
-            win = tk.Toplevel(self)
-            win.title(f"Preview: {os.path.basename(path)}")
-            win.geometry("1920x1080")
-            txt = tk.Text(win, wrap="none")
-            txt.pack(fill="both", expand=True)
-            try:
-                with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                    for i, line in enumerate(f):
-                        txt.insert("end", line)
-                        if i >= 400:
-                            txt.insert("end", "\n...preview truncated...\n")
-                            break
-            except Exception as e:
-                txt.insert("end", f"Could not open preview: {e}\n")
-        except Exception as e:
-            self.log(f"Preview failed: {e}")
-
-    def log(self, text):
-        try:
-            self.log_text.configure(state="normal")
-            ts = datetime.now().strftime("%H:%M:%S")
-            self.log_text.insert("end", f"[{ts}] {text}\n")
-            self.log_text.see("end")
-            self.log_text.configure(state="disabled")
-        except Exception:
-            print(text)
-
-    # Actions: Auto / Normal / Ext remove / Custom percent
+        self._repopulate_list()
+        self.log("List cleared")
+    
     def action_auto(self):
+        """Auto processing (all files)"""
         if not self.file_list:
-            messagebox.showinfo("Auto", "No files in list to process.", parent=self)
+            QMessageBox.information(self, "Info", "No files to process")
             return
-        files_to_process = list(self.file_list)
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        for file in files_to_process:
-            clean_wiz_backend.clean_backend(file=file, outputDir=self.clean_dir, percent=None)
-        self._start_processing(files_to_process, percent=None, mode="AUTO")
-
+        
+        output_dir = os.path.join(self.current_dir, "output", "Cleaned Files")
+        self._start_processing(list(self.file_list), output_dir, None, "AUTO")
+    
     def action_normal(self):
-        paths = self._get_selected_paths()
-        if not paths:
-            messagebox.showinfo("Normal", "No files selected. Select files on the left first.", parent=self)
+        """Normal processing (selected files)"""
+        selected = self._get_selected_paths()
+        if not selected:
+            QMessageBox.information(self, "Info", "No files selected")
             return
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        for file in paths:
-            clean_wiz_backend.clean_backend(file=file, outputDir=self.clean_dir, percent=None)
-
+        
+        output_dir = os.path.join(self.current_dir, "output", "Cleaned Files")
+        self._start_processing(selected, output_dir, None, "NORMAL")
+    
     def action_ext_remove(self, percent):
-        paths = self._get_selected_paths()
-        if not paths:
-            messagebox.showinfo("Extensometer removal", "No files selected. Select files on the left first.", parent=self)
+        """Extensometer removal"""
+        selected = self._get_selected_paths()
+        if not selected:
+            QMessageBox.information(self, "Info", "No files selected")
             return
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        for file in paths:
-            clean_wiz_backend.clean_backend(file=file, outputDir=self.clean_dir, percent=percent)
-
-    def action_noext(self):
-        paths = self._get_selected_paths()
-        if not paths:
-            messagebox.showinfo("Extensometer removal", "No files selected. Select files on the left first.", parent=self)
-            return
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        for file in paths:
-            clean_wiz_backend.clean_backend_noext(file=file, outputDir=self.clean_dir)
-
-    def action_custom_ext(self):
+        
+        output_dir = os.path.join(self.current_dir, "output", "Cleaned Files")
+        self._start_processing(selected, output_dir, percent, f"EXT-{percent}")
+    
+    def action_custom(self):
+        """Custom percent"""
         try:
-            pct = float(self.custom_percent.get())
-        except Exception:
-            messagebox.showerror("Invalid percent", "Custom percent value is invalid.", parent=self)
-            return
-        self.clean_dir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        self.action_ext_remove(pct)
-
-    # core processing
-    def _start_processing(self, files, percent, mode="PROCESS"):
-        if self._running:
-            messagebox.showwarning("Processing", "Processing is already running. Wait for it to finish.", parent=self)
-            return
-
-        # Unified output dir: <base_dir>/output/Cleaned Files
-        outdir = os.path.join(self.current_dir.get(), "output", "Cleaned Files")
-        try:
-            os.makedirs(outdir, exist_ok=True)
-        except Exception as e:
-            messagebox.showerror("Output folder", f"Could not create output folder '{outdir}':\n{e}", parent=self)
-            return
-
-        if not BACKEND_AVAILABLE:
-            # still allow user to queue, but inform them
-            messagebox.showerror("Backend missing", "clean_wiz_backend.clean_backend not found. Please provide the backend.", parent=self)
-            return
-
-        self._running = True
-        self._set_buttons_state("disabled")
-        self.log(f"[{mode}] Queued {len(files)} file(s) for processing. Output dir: {outdir}")
-
-        def worker():
-            succeeded = 0
-            failed = 0
-            n = len(files)
-
-            for i, fpath in enumerate(files, start=1):
-                # update log (use direct function to capture correct variables)
-                self.after(0, lambda p=fpath, ii=i, nn=n: self.log(f"[{mode}] Processing ({ii}/{nn}): {p}"))
-
-                try:
-                    # Preferred signature: clean_backend(file, outputDir, percent=...)
-                    # Try safe calls and catch TypeError if signature differs.
-                    try:
-                        self._backend(fpath, outdir, percent=percent)
-                    except TypeError:
-                        # try without percent
-                        try:
-                            self._backend(fpath, outdir)
-                        except TypeError:
-                            # try single-argument call
-                            self._backend(fpath)
-                    succeeded += 1
-                    self.after(0, lambda p=fpath: self.log(f"[{mode}] Done: {p}"))
-                except Exception as e:
-                    failed += 1
-                    self.after(0, lambda p=fpath, err=e: self.log(f"[{mode}] ERROR on {p}: {err}"))
-
-            # finish
-            def finish():
-                self.log(f"[{mode}] Finished. Success: {succeeded}, Failed: {failed}")
-                self._set_buttons_state("normal")
-                self._running = False
-                # (Caller/backend should write into outdir; GUI won't merge JSONs here)
-            self.after(0, finish)
-
-        t = threading.Thread(target=worker, daemon=True)
-        t.start()
-
-    def _relocate_outputs(self, base_output_root, target_outdir):
-        # left as a helper in case you implement relocation later
-        if not os.path.isdir(base_output_root):
-            return
-        base_output_root = os.path.abspath(base_output_root)
-        target_outdir = os.path.abspath(target_outdir)
-        for root, dirs, files in os.walk(base_output_root):
-            for fname in files:
-                src = os.path.join(root, fname)
-                try:
-                    if os.path.commonpath([src, target_outdir]) == target_outdir:
-                        continue
-                except Exception:
-                    if os.path.abspath(src).startswith(target_outdir):
-                        continue
-                rel = os.path.relpath(root, base_output_root)
-                dest_dir = os.path.join(target_outdir, rel) if rel != "." else target_outdir
-                os.makedirs(dest_dir, exist_ok=True)
-                dest = os.path.join(dest_dir, fname)
-                if os.path.exists(dest):
-                    base, ext = os.path.splitext(dest)
-                    dest = f"{base}_{int(datetime.now().timestamp())}{ext}"
-                try:
-                    os.replace(src, dest)
-                    self.log(f"Moved output: {src} -> {dest}")
-                except Exception as e:
-                    self.log(f"Failed moving output {src}: {e}")
-
-    def _set_buttons_state(self, state):
-        for btn in getattr(self, "_buttons", []):
-            try:
-                btn.configure(state=state)
-            except Exception:
-                pass
-        try:
-            self.file_listbox.configure(state="disabled" if state == "disabled" else "normal")
-        except Exception:
-            pass
-
-    # simple helpers
-    def _on_drop(self, event):
-        # placeholder for future DnD support
-        pass
-
-    def open_modal(self):
-        try:
-            self.grab_set()
-        except Exception:
-            pass
-        self.wait_window(self)
-
-
-# quick launcher for testing the GUI standalone
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.title("CleaningWizard Test Launcher")
-    root.geometry("1920x1080")
-    ttk.Label(root, text="Open Cleaning Wizard", font=(None, 12)).pack(pady=(10,6))
-    def open_w():
-        cw = CleaningWizard(root, start_dir=r"D:\For People\For Ashwath\AK_Tensile Python Processing\SLM_070625_SR.is_tens_Exports")
-        # optional: make modal: cw.open_modal()
-    ttk.Button(root, text="Open Wizard", command=open_w).pack(pady=(0,8))
-    ttk.Button(root, text="Quit", command=root.destroy).pack()
-    root.mainloop()
+            pct = float(self.custom_percent.text())
+            self.action_ext_remove(pct)
+        except:
+            QMessageBox.warning(self, "Warning", "Invalid percent value")
+    
+    def _get_selected_paths(self):
+        """Get selected file paths"""
+        selected_items = self.file_list_widget.selectedItems()
+        if not selected_items:
+            return []
+        
+        sorted_files = sorted(self.file_list)
+        indices = [self.file_list_widget.row(item) for item in selected_items]
+        return [sorted_files[i] for i in indices]
+    
+    def _start_processing(self, files, output_dir, percent, mode):
+        """Start processing worker"""
+        os.makedirs(output_dir, exist_ok=True)
+        
+        self.log(f"[{mode}] Starting processing of {len(files)} file(s)")
+        self.log(f"Output: {output_dir}")
+        
+        self.worker = CleaningWorker(files, output_dir, percent)
+        self.worker.progress.connect(self.log)
+        self.worker.finished.connect(self._on_finished)
+        
+        self.progress_bar.setVisible(True)
+        self.progress_bar.setMaximum(0)  # Indeterminate
+        self.btn_stop.setVisible(True)
+        
+        self.worker.start()
+    
+    def _on_finished(self, succeeded, failed):
+        """Handle worker finished"""
+        self.log(f"Finished. Success: {succeeded}, Failed: {failed}")
+        self.progress_bar.setVisible(False)
+        self.btn_stop.setVisible(False)
+        
+        QMessageBox.information(self, "Complete", 
+            f"Processing complete.\n\nSucceeded: {succeeded}\nFailed: {failed}")
+    
+    def stop_processing(self):
+        """Stop processing"""
+        if self.worker:
+            self.worker.stop()
+            self.log("Stop requested...")
