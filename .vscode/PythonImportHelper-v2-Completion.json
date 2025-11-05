@@ -1,0 +1,1175 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "QMainWindow",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QWidget",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QVBoxLayout",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QHBoxLayout",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QPushButton",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLineEdit",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTreeWidget",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QTreeWidgetItem",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QSplitter",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QStatusBar",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QFileDialog",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMessageBox",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QAction",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMenuBar",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMenu",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QProgressBar",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSignal",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QThread",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QTimer",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "QIcon",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QPixmap",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QImage",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasQTAgg",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2QT",
+        "importPath": "matplotlib.backends.backend_qt5agg",
+        "description": "matplotlib.backends.backend_qt5agg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_qt5agg",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "Figure",
+        "importPath": "matplotlib.figure",
+        "description": "matplotlib.figure",
+        "isExtraImport": true,
+        "detail": "matplotlib.figure",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "BASEDIR",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CHARL",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AREA",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "constants",
+        "description": "constants",
+        "isExtraImport": true,
+        "detail": "constants",
+        "documentation": {}
+    },
+    {
+        "label": "DataProcessor",
+        "importPath": "core.data_processor",
+        "description": "core.data_processor",
+        "isExtraImport": true,
+        "detail": "core.data_processor",
+        "documentation": {}
+    },
+    {
+        "label": "CleaningWizard",
+        "importPath": "gui.cleaning_wizard",
+        "description": "gui.cleaning_wizard",
+        "isExtraImport": true,
+        "detail": "gui.cleaning_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "ModulusDialog",
+        "importPath": "gui.modulus_dialog",
+        "description": "gui.modulus_dialog",
+        "isExtraImport": true,
+        "detail": "gui.modulus_dialog",
+        "documentation": {}
+    },
+    {
+        "label": "YieldDialog",
+        "importPath": "gui.yield_dialog",
+        "description": "gui.yield_dialog",
+        "isExtraImport": true,
+        "detail": "gui.yield_dialog",
+        "documentation": {}
+    },
+    {
+        "label": "BreakpointDialog",
+        "importPath": "gui.breakpoint_dialog",
+        "description": "gui.breakpoint_dialog",
+        "isExtraImport": true,
+        "detail": "gui.breakpoint_dialog",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "importPath": "gui.main_window",
+        "description": "gui.main_window",
+        "isExtraImport": true,
+        "detail": "gui.main_window",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib",
+        "description": "matplotlib",
+        "detail": "matplotlib",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasTkAgg",
+        "importPath": "matplotlib.backends.backend_tkagg",
+        "description": "matplotlib.backends.backend_tkagg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_tkagg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2Tk",
+        "importPath": "matplotlib.backends.backend_tkagg",
+        "description": "matplotlib.backends.backend_tkagg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_tkagg",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasTkAgg",
+        "importPath": "matplotlib.backends.backend_tkagg",
+        "description": "matplotlib.backends.backend_tkagg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_tkagg",
+        "documentation": {}
+    },
+    {
+        "label": "NavigationToolbar2Tk",
+        "importPath": "matplotlib.backends.backend_tkagg",
+        "description": "matplotlib.backends.backend_tkagg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_tkagg",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "cleaning",
+        "description": "cleaning",
+        "isExtraImport": true,
+        "detail": "cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "json_utils",
+        "description": "json_utils",
+        "isExtraImport": true,
+        "detail": "json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "data_helpers",
+        "description": "data_helpers",
+        "isExtraImport": true,
+        "detail": "data_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "CleaningWizard",
+        "importPath": "clean_wizard",
+        "description": "clean_wizard",
+        "isExtraImport": true,
+        "detail": "clean_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "preview_file",
+        "importPath": "preview",
+        "description": "preview",
+        "isExtraImport": true,
+        "detail": "preview",
+        "documentation": {}
+    },
+    {
+        "label": "TensileGUI",
+        "importPath": "gui_core",
+        "description": "gui_core",
+        "isExtraImport": true,
+        "detail": "gui_core",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "DataProcessor",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.core.data_processor",
+        "description": "PyQt5 Trials.core.data_processor",
+        "peekOfCode": "class DataProcessor:\n    \"\"\"Handles all data processing, file I/O, and analysis operations\"\"\"\n    def __init__(self):\n        pass\n    # ==================== JSON Operations ====================\n    def master_json_path(self, output_dir: str) -> Optional[str]:\n        \"\"\"Get path to master JSON file\"\"\"\n        return os.path.join(output_dir, \"gui_master.json\") if output_dir else None\n    def load_master(self, output_dir: str) -> Dict:\n        \"\"\"Load master JSON data\"\"\"",
+        "detail": "PyQt5 Trials.core.data_processor",
+        "documentation": {}
+    },
+    {
+        "label": "CleaningWizard",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.cleaning_wizard",
+        "description": "PyQt5 Trials.gui.cleaning_wizard",
+        "peekOfCode": "class CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")\n        self.geometry(\"980x620\")\n        self.minsize(860, 520)\n        self.transient(parent)\n        # state\n        self.current_dir = tk.StringVar(value=start_dir or os.getcwd())",
+        "detail": "PyQt5 Trials.gui.cleaning_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "BACKEND_AVAILABLE",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.gui.cleaning_wizard",
+        "description": "PyQt5 Trials.gui.cleaning_wizard",
+        "peekOfCode": "BACKEND_AVAILABLE = True\ntry:\n    import clean_wiz_backend\nexcept:\n    BACKEND_AVAILABLE = False\nclass CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")",
+        "detail": "PyQt5 Trials.gui.cleaning_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "PyQt5 Trials.gui.main_window",
+        "description": "PyQt5 Trials.gui.main_window",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    \"\"\"Modern PyQt5 main window for Polymer PostMortem\"\"\"\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(f\"Polymer PostMortem v{VERSION}\")\n        self.setGeometry(100, 100, 1280, 780)\n        # State management\n        self.current_dir = BASEDIR\n        self.output_dir = None\n        self.current_file = None",
+        "detail": "PyQt5 Trials.gui.main_window",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "VERSION = \"2.0.0\"\nDEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CHARL",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "DEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AREA",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "DEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MASTER_POLL_MS",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "MASTER_POLL_MS = 800\n# Default base directory - modify as needed\nBASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "BASEDIR",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.constants",
+        "description": "PyQt5 Trials.constants",
+        "peekOfCode": "BASEDIR = os.path.expanduser(\"~/Documents/TensileData\")",
+        "detail": "PyQt5 Trials.constants",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "PyQt5 Trials.main_qt",
+        "description": "PyQt5 Trials.main_qt",
+        "peekOfCode": "def main():\n    \"\"\"Initialize and run the PyQt5 application\"\"\"\n    # Enable high DPI scaling\n    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)\n    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)\n    app = QApplication(sys.argv)\n    # Set application-wide style\n    app.setStyle('Fusion')\n    # Modern dark theme palette\n    from PyQt5.QtGui import QPalette, QColor",
+        "detail": "PyQt5 Trials.main_qt",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "kind": 5,
+        "importPath": "PyQt5 Trials.main_qt",
+        "description": "PyQt5 Trials.main_qt",
+        "peekOfCode": "VERSION = \"2.0.0\"\ndef main():\n    \"\"\"Initialize and run the PyQt5 application\"\"\"\n    # Enable high DPI scaling\n    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)\n    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)\n    app = QApplication(sys.argv)\n    # Set application-wide style\n    app.setStyle('Fusion')\n    # Modern dark theme palette",
+        "detail": "PyQt5 Trials.main_qt",
+        "documentation": {}
+    },
+    {
+        "label": "cleanfiles",
+        "kind": 2,
+        "importPath": "TKinter.cleaning",
+        "description": "TKinter.cleaning",
+        "peekOfCode": "def cleanfiles(dirpath, files):\n    \"\"\"\n    Writes cleaned CSVs to <dirpath>/output/Clean Files and creates specimenSpecs JSONs.\n    Ported from GUI7.py with same behavior.\n    \"\"\"\n    outputDir = os.path.join(dirpath, \"output\", \"Clean Files\")\n    os.makedirs(outputDir, exist_ok=True)\n    specimenJsonDir = os.path.join(outputDir, \"specimenSpecs\")\n    os.makedirs(specimenJsonDir, exist_ok=True)\n    header_keywords = (\"time\", \"strain\", \"stress\", \"displacement\")",
+        "detail": "TKinter.cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "clear_clean_files_csvs",
+        "kind": 2,
+        "importPath": "TKinter.cleaning",
+        "description": "TKinter.cleaning",
+        "peekOfCode": "def clear_clean_files_csvs(base_dir):\n    \"\"\"\n    Remove .csv files directly inside any <...>/output/Clean Files folders under base_dir.\n    \"\"\"\n    removed = []\n    if not base_dir or not os.path.isdir(base_dir):\n        return removed\n    for root, dirs, files in os.walk(base_dir):\n        for d in dirs:\n            if d.lower() == \"clean files\" and os.path.basename(root).lower() == \"output\":",
+        "detail": "TKinter.cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "NUMERIC_RE",
+        "kind": 5,
+        "importPath": "TKinter.cleaning",
+        "description": "TKinter.cleaning",
+        "peekOfCode": "NUMERIC_RE = re.compile(r'[+\\-]?\\d*\\.?\\d+(?:[eE][+\\-]?\\d+)?')\ndef _extract_number_from_token(tok):\n    \"\"\"Return float parsed from token or np.nan (robust to stray chars).\"\"\"\n    if tok is None:\n        return np.nan\n    s = str(tok).strip().replace('\"', '').replace(\"'\", \"\")\n    try:\n        return float(s)\n    except Exception:\n        m = NUMERIC_RE.search(s)",
+        "detail": "TKinter.cleaning",
+        "documentation": {}
+    },
+    {
+        "label": "CleaningWizard",
+        "kind": 6,
+        "importPath": "TKinter.clean_wizard",
+        "description": "TKinter.clean_wizard",
+        "peekOfCode": "class CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")\n        self.geometry(\"980x620\")\n        self.minsize(860, 520)\n        self.transient(parent)\n        # state\n        self.current_dir = tk.StringVar(value=start_dir or os.getcwd())",
+        "detail": "TKinter.clean_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "BACKEND_AVAILABLE",
+        "kind": 5,
+        "importPath": "TKinter.clean_wizard",
+        "description": "TKinter.clean_wizard",
+        "peekOfCode": "BACKEND_AVAILABLE = True\ntry:\n    import clean_wiz_backend\nexcept:\n    BACKEND_AVAILABLE = False\nclass CleaningWizard(tk.Toplevel):\n    def __init__(self, parent, start_dir=None):\n        super().__init__(parent)\n        self.parent = parent\n        self.title(\"Clean Files Wizard\")",
+        "detail": "TKinter.clean_wizard",
+        "documentation": {}
+    },
+    {
+        "label": "GuiLogHandler",
+        "kind": 6,
+        "importPath": "TKinter.clean_wiz_backend",
+        "description": "TKinter.clean_wiz_backend",
+        "peekOfCode": "class GuiLogHandler(logging.Handler):\n    \"\"\"A logging handler that attempts to write log records into the\n    CleaningWizard log Text widget. It uses root.after(0, ...) so it's\n    safe to call from worker threads.\n    \"\"\"\n    def emit(self, record):\n        try:\n            msg = self.format(record)\n            root = getattr(tk, \"_default_root\", None)\n            txt = _find_log_text_widget()",
+        "detail": "TKinter.clean_wiz_backend",
+        "documentation": {}
+    },
+    {
+        "label": "clean_backend",
+        "kind": 2,
+        "importPath": "TKinter.clean_wiz_backend",
+        "description": "TKinter.clean_wiz_backend",
+        "peekOfCode": "def clean_backend(file, outputDir, percent=None):\n    os.makedirs(outputDir, exist_ok=True)\n    try:\n        if file.endswith('.csv'):\n            with open(file, 'r') as f:\n                line = f.readline()\n                while line:\n                    if \"time\" in line.lower().split(','):\n                        cols = []\n                        for i in line.strip().split(','):",
+        "detail": "TKinter.clean_wiz_backend",
+        "documentation": {}
+    },
+    {
+        "label": "clean_backend_noext",
+        "kind": 2,
+        "importPath": "TKinter.clean_wiz_backend",
+        "description": "TKinter.clean_wiz_backend",
+        "peekOfCode": "def clean_backend_noext(file, outputDir, percent=None):\n    try:\n        if file.endswith('.csv'):\n            with open(file, 'r') as f:\n                line = f.readline()\n                while line:\n                    if \"time\" in line.lower().split(','):\n                        cols = []\n                        for i in line.strip().split(','):\n                            if i:",
+        "detail": "TKinter.clean_wiz_backend",
+        "documentation": {}
+    },
+    {
+        "label": "log",
+        "kind": 2,
+        "importPath": "TKinter.clean_wiz_backend",
+        "description": "TKinter.clean_wiz_backend",
+        "peekOfCode": "def log(msg, level='info'):\n    \"\"\"Convenience wrapper so GUI or other modules can call clean_wiz_backend.log(msg). \"\"\"\n    if level == 'debug':\n        logger.debug(msg)\n    elif level == 'warning':\n        logger.warning(msg)\n    elif level == 'error':\n        logger.error(msg)\n    else:\n        logger.info(msg)",
+        "detail": "TKinter.clean_wiz_backend",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "TKinter.clean_wiz_backend",
+        "description": "TKinter.clean_wiz_backend",
+        "peekOfCode": "logger = logging.getLogger(\"clean_wiz_backend\")\nif not logger.handlers:\n    logger.setLevel(logging.DEBUG)\n    ghl = GuiLogHandler()\n    ghl.setLevel(logging.DEBUG)\n    formatter = logging.Formatter(\"%(levelname)s: %(message)s\")\n    ghl.setFormatter(formatter)\n    logger.addHandler(ghl)\n# optional: also add a StreamHandler to stderr so logs are visible in\n# the console if the GUI handler fails (comment/uncomment as desired)",
+        "detail": "TKinter.clean_wiz_backend",
+        "documentation": {}
+    },
+    {
+        "label": "ICON_PIXELS",
+        "kind": 5,
+        "importPath": "TKinter.constants",
+        "description": "TKinter.constants",
+        "peekOfCode": "ICON_PIXELS = 16\nDEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\nBASEDIR = r\"D:\\For People\\For Ashwath\\AK_Tensile Python Processing\\SLM_070625_SR.is_tens_Exports\"",
+        "detail": "TKinter.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_CHARL",
+        "kind": 5,
+        "importPath": "TKinter.constants",
+        "description": "TKinter.constants",
+        "peekOfCode": "DEFAULT_CHARL = 85.0\nDEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\nBASEDIR = r\"D:\\For People\\For Ashwath\\AK_Tensile Python Processing\\SLM_070625_SR.is_tens_Exports\"",
+        "detail": "TKinter.constants",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AREA",
+        "kind": 5,
+        "importPath": "TKinter.constants",
+        "description": "TKinter.constants",
+        "peekOfCode": "DEFAULT_AREA = 62.5\nMASTER_POLL_MS = 800\nBASEDIR = r\"D:\\For People\\For Ashwath\\AK_Tensile Python Processing\\SLM_070625_SR.is_tens_Exports\"",
+        "detail": "TKinter.constants",
+        "documentation": {}
+    },
+    {
+        "label": "MASTER_POLL_MS",
+        "kind": 5,
+        "importPath": "TKinter.constants",
+        "description": "TKinter.constants",
+        "peekOfCode": "MASTER_POLL_MS = 800\nBASEDIR = r\"D:\\For People\\For Ashwath\\AK_Tensile Python Processing\\SLM_070625_SR.is_tens_Exports\"",
+        "detail": "TKinter.constants",
+        "documentation": {}
+    },
+    {
+        "label": "BASEDIR",
+        "kind": 5,
+        "importPath": "TKinter.constants",
+        "description": "TKinter.constants",
+        "peekOfCode": "BASEDIR = r\"D:\\For People\\For Ashwath\\AK_Tensile Python Processing\\SLM_070625_SR.is_tens_Exports\"",
+        "detail": "TKinter.constants",
+        "documentation": {}
+    },
+    {
+        "label": "detect_columns",
+        "kind": 2,
+        "importPath": "TKinter.data_helpers",
+        "description": "TKinter.data_helpers",
+        "peekOfCode": "def detect_columns(df):\n    names = {\"strain\": None, \"stress\": None, \"disp\": None, \"force\": None}\n    for c in df.columns:\n        lc = str(c).lower()\n        if \"strain\" in lc:\n            names[\"strain\"] = c\n        if \"stress\" in lc:\n            names[\"stress\"] = c\n        if \"displacement\" in lc or \"disp\" in lc:\n            names[\"disp\"] = c",
+        "detail": "TKinter.data_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "compute_auto_modulus",
+        "kind": 2,
+        "importPath": "TKinter.data_helpers",
+        "description": "TKinter.data_helpers",
+        "peekOfCode": "def compute_auto_modulus(filepath):\n    \"\"\"\n    Returns modulus in GPa (rounded) or None.\n    Mirrors logic in original GUI7.py (uses mainPostProc.readMod if available).\n    \"\"\"\n    try:\n        if MP_AVAILABLE and hasattr(mp, \"readMod\"):\n            try:\n                outdir = None\n                p = os.path.dirname(filepath)",
+        "detail": "TKinter.data_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "compute_yield_from_mod",
+        "kind": 2,
+        "importPath": "TKinter.data_helpers",
+        "description": "TKinter.data_helpers",
+        "peekOfCode": "def compute_yield_from_mod(filepath, mod_val, offset_pct=0.2, resolution=0.0001):\n    try:\n        df = pd.read_csv(filepath)\n        names = detect_columns(df)\n        if not names[\"strain\"] or not names[\"stress\"]:\n            return (None, None)\n        X = df[names[\"strain\"]].astype(float).values\n        Y = df[names[\"stress\"]].astype(float).values\n        mod = float(mod_val) * 10.0\n        max_strain = 7",
+        "detail": "TKinter.data_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "compute_breakpoint_auto",
+        "kind": 2,
+        "importPath": "TKinter.data_helpers",
+        "description": "TKinter.data_helpers",
+        "peekOfCode": "def compute_breakpoint_auto(filepath):\n    try:\n        if MP_AVAILABLE and hasattr(mp, \"breakpoint_from_file\"):\n            try:\n                return mp.breakpoint_from_file(filepath)\n            except Exception:\n                pass\n        df = pd.read_csv(filepath)\n        names = detect_columns(df)\n        if names[\"strain\"] and names[\"stress\"]:",
+        "detail": "TKinter.data_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "TensileGUI",
+        "kind": 6,
+        "importPath": "TKinter.gui_core",
+        "description": "TKinter.gui_core",
+        "peekOfCode": "class TensileGUI:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"Polymer PostMortem\")\n        self.root.geometry(\"1280x780\")\n        # prefer true fullscreen; fall back to zoomed or fixed size if not available\n        try:\n            # start fullscreen (works cross-platform for most setups)\n            self.root.attributes(\"-fullscreen\", True)\n            self._is_fullscreen = True",
+        "detail": "TKinter.gui_core",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "kind": 5,
+        "importPath": "TKinter.gui_core",
+        "description": "TKinter.gui_core",
+        "peekOfCode": "VERSION = \"1.32.0\"\n# --- GUI ---\nclass TensileGUI:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"Polymer PostMortem\")\n        self.root.geometry(\"1280x780\")\n        # prefer true fullscreen; fall back to zoomed or fixed size if not available\n        try:\n            # start fullscreen (works cross-platform for most setups)",
+        "detail": "TKinter.gui_core",
+        "documentation": {}
+    },
+    {
+        "label": "master_json_path",
+        "kind": 2,
+        "importPath": "TKinter.json_utils",
+        "description": "TKinter.json_utils",
+        "peekOfCode": "def master_json_path(output_dir):\n    return os.path.join(output_dir, \"gui_master.json\") if output_dir else None\ndef load_master(output_dir):\n    p = master_json_path(output_dir)\n    if not p or not os.path.exists(p):\n        return {}\n    try:\n        with open(p, \"r\", encoding=\"utf-8\") as f:\n            return json.load(f)\n    except Exception:",
+        "detail": "TKinter.json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "load_master",
+        "kind": 2,
+        "importPath": "TKinter.json_utils",
+        "description": "TKinter.json_utils",
+        "peekOfCode": "def load_master(output_dir):\n    p = master_json_path(output_dir)\n    if not p or not os.path.exists(p):\n        return {}\n    try:\n        with open(p, \"r\", encoding=\"utf-8\") as f:\n            return json.load(f)\n    except Exception:\n        return {}\ndef save_master(output_dir, data):",
+        "detail": "TKinter.json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "save_master",
+        "kind": 2,
+        "importPath": "TKinter.json_utils",
+        "description": "TKinter.json_utils",
+        "peekOfCode": "def save_master(output_dir, data):\n    p = master_json_path(output_dir)\n    if not p:\n        return\n    try:\n        with open(p, \"w\", encoding=\"utf-8\") as f:\n            json.dump(data, f, indent=4)\n    except Exception as e:\n        print(\"save_master failed:\", e)\ndef write_json_safe(path, data):",
+        "detail": "TKinter.json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "write_json_safe",
+        "kind": 2,
+        "importPath": "TKinter.json_utils",
+        "description": "TKinter.json_utils",
+        "peekOfCode": "def write_json_safe(path, data):\n    try:\n        with open(path, \"w\", encoding=\"utf-8\") as f:\n            json.dump(data, f, indent=4)\n    except Exception as e:\n        print(\"write_json_safe failed:\", path, e)\ndef merge_individual_jsons(output_dir, master=None):\n    \"\"\"\n    Build/update master from specimenSpecs and per-metric jsons.\n    Behaves like original: preserves 'flag' if present.",
+        "detail": "TKinter.json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "merge_individual_jsons",
+        "kind": 2,
+        "importPath": "TKinter.json_utils",
+        "description": "TKinter.json_utils",
+        "peekOfCode": "def merge_individual_jsons(output_dir, master=None):\n    \"\"\"\n    Build/update master from specimenSpecs and per-metric jsons.\n    Behaves like original: preserves 'flag' if present.\n    \"\"\"\n    if not output_dir:\n        return {}\n    if master is None:\n        master = load_master(output_dir) if os.path.exists(master_json_path(output_dir) or \"\") else {}\n    # specimen specs",
+        "detail": "TKinter.json_utils",
+        "documentation": {}
+    },
+    {
+        "label": "DualFileProcessorGUI",
+        "kind": 6,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "class DualFileProcessorGUI(tk.Toplevel):\n    def __init__(self, master=None, start_dir=os.getcwd()):\n        super().__init__(master)\n        self.title(\"Dual File Processor — Demo\")\n        self.geometry(\"1280x780\")\n        self.minsize(900, 600)\n        # state\n        self.current_dir = tk.StringVar(value=start_dir)\n        self.percent_var = tk.StringVar(value=\"10\")\n        self.percent_value = 10.0",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "browse_folder",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def browse_folder(gui):\n    \"\"\"Open a folder dialog and refresh the file list for that folder.\"\"\"\n    sel = filedialog.askdirectory(initialdir=os.getcwd())\n    if not sel:\n        return\n    gui.current_dir.set(sel)\n    refresh_file_list(gui)\ndef refresh_file_list(gui):\n    \"\"\"Populate the listbox with CSV/XLSX files found under the chosen directory.\"\"\"\n    folder = gui.current_dir.get().strip()",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "refresh_file_list",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def refresh_file_list(gui):\n    \"\"\"Populate the listbox with CSV/XLSX files found under the chosen directory.\"\"\"\n    folder = gui.current_dir.get().strip()\n    gui.file_paths.clear()\n    gui.listbox.delete(0, tk.END)\n    if not folder or not os.path.isdir(folder):\n        gui.status_var.set(\"Set a valid directory first.\")\n        return\n    # gather files (non-recursive). change to recursive if needed.\n    patterns = [\"*.csv\", \"*.CSV\", \"*.xlsx\", \"*.XLSX\", \"*.xls\", \"*.XLS\"]",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "select_file_from_list",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def select_file_from_list(gui):\n    \"\"\"Select current file (single-select behavior); updates graph with selected file.\"\"\"\n    sel = gui.listbox.curselection()\n    if not sel:\n        gui.status_var.set(\"No file selected in list.\")\n        return\n    idx = sel[0]\n    path = gui.file_paths.get(idx)\n    gui.current_file_path = path\n    gui.status_var.set(f\"Selected: {os.path.basename(path)}\")",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "set_percent_and_refresh",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def set_percent_and_refresh(gui):\n    \"\"\"Read percent entry, store value, and refresh (placeholder).\"\"\"\n    txt = gui.percent_var.get().strip()\n    try:\n        val = float(txt)\n        gui.percent_value = val\n        gui.status_var.set(f\"Percent set to {val}%. Refreshing list...\")\n        # You can modify this to actually filter/process files based on percent\n        refresh_file_list(gui)\n    except Exception:",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "process_selected_pair",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def process_selected_pair(gui):\n    \"\"\"Take exactly two selected items and process them together (editable).\"\"\"\n    sel = gui.listbox.curselection()\n    if not sel or len(sel) < 2:\n        gui.status_var.set(\"Select exactly two files (Ctrl+Click) to process as a pair.\")\n        return\n    # take first two selected indices (you can alter to pick any two)\n    idx0, idx1 = sel[0], sel[1]\n    p0 = gui.file_paths.get(idx0)\n    p1 = gui.file_paths.get(idx1)",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "process_two_files",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def process_two_files(gui, path_a, path_b):\n    \"\"\"\n    Placeholder: process two files together.\n    Replace this function with your real processing logic.\n    \"\"\"\n    try:\n        # simulate work\n        import time\n        time.sleep(1.0)\n        # example: compute number of rows in each (if pandas available)",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "update_plot_for_file",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def update_plot_for_file(gui, filepath):\n    \"\"\"\n    Read a CSV (or first sheet of xlsx) and plot first two numeric columns.\n    Keeps the plotting code separate so it's easy to edit.\n    \"\"\"\n    ax = gui.fig_ax\n    ax.clear()\n    try:\n        if pd is not None and filepath.lower().endswith((\".csv\", \".xlsx\", \".xls\")):\n            if filepath.lower().endswith(\".csv\"):",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "open_demo_gui",
+        "kind": 2,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "def open_demo_gui():\n    \"\"\"Opens the DualFileProcessorGUI from a launcher window.\"\"\"\n    root = tk.Tk()\n    root.title(\"Launcher (Demo)\")\n    root.geometry(\"420x180\")\n    ttk.Label(root, text=\"Demo launcher for Dual File Processor GUI\", font=(\"Segoe UI\", 11)).pack(pady=12)\n    ttk.Button(root, text=\"Open Dual File Processor GUI\", command=lambda: DualFileProcessorGUI(root)).pack(pady=8)\n    ttk.Button(root, text=\"Quit\", command=root.destroy).pack(pady=(6,0))\n    root.mainloop()\n# -------------------------",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "VERSION",
+        "kind": 5,
+        "importPath": "TKinter.noext",
+        "description": "TKinter.noext",
+        "peekOfCode": "VERSION = \"1.26.8\"\n# -------------------------\n# Button callback functions (edit these freely)\n# -------------------------\ndef browse_folder(gui):\n    \"\"\"Open a folder dialog and refresh the file list for that folder.\"\"\"\n    sel = filedialog.askdirectory(initialdir=os.getcwd())\n    if not sel:\n        return\n    gui.current_dir.set(sel)",
+        "detail": "TKinter.noext",
+        "documentation": {}
+    },
+    {
+        "label": "preview_file",
+        "kind": 2,
+        "importPath": "TKinter.preview",
+        "description": "TKinter.preview",
+        "peekOfCode": "def preview_file(file):\n    \"\"\"\n    Open a Toplevel window and preview the entire CSV or XLSX file.\n    - Streams CSVs chunk-by-chunk to avoid loading whole file at once.\n    - Inserts rows in UI-friendly batches so UI remains responsive.\n    Usage: command=lambda: preview_file(filename)\n    \"\"\"\n    import os\n    import tkinter as tk\n    from tkinter import ttk, messagebox",
+        "detail": "TKinter.preview",
+        "documentation": {}
+    }
+]
